@@ -1,5 +1,6 @@
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import './globals.css';
 
 export const metadata = {
   title: "Les papillons énergétiques",
