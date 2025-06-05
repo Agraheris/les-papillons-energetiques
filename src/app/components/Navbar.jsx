@@ -13,7 +13,7 @@ function Navbar() {
 
   return (
     <>
-      <nav style={{ backgroundColor: '#E9BAF1' }} className="flex items-center justify-between p-4 relative">
+      <nav className="flex items-center justify-between p-4 relative bg-[#E9BAF1]">
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <Image
             src="/images/papillon_fond.png"
