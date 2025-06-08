@@ -1,32 +1,29 @@
-import { Resend } from 'resend'
-import { NextResponse } from 'next/server'
+import { Resend } from "resend";
+import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request) {
   try {
-    const { name, surname, email, message } = await request.json()
+    const { name, surname, email, message } = await request.json();
 
     // Validation des données
     if (!name || !surname || !email || !message) {
       return NextResponse.json(
-        { error: 'Tous les champs sont requis' }, 
+        { error: "Tous les champs sont requis" },
         { status: 400 }
-      )
+      );
     }
 
     // Validation email basique
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Email invalide' }, 
-        { status: 400 }
-      )
+      return NextResponse.json({ error: "Email invalide" }, { status: 400 });
     }
 
     // Envoi de l'email
     const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Domaine de test Resend
+      from: "contact@lepapillonenergetique.fr",
       to: [process.env.CONTACT_EMAIL],
       subject: `Nouveau message de ${name} ${surname}`,
       html: `
@@ -47,7 +44,7 @@ export async function POST(request) {
             <div style="margin-bottom: 20px;">
               <h3 style="color: #7c3aed; margin-bottom: 10px;">Message :</h3>
               <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; border-left: 4px solid #7c3aed;">
-                ${message.replace(/\n/g, '<br>')}
+                ${message.replace(/\n/g, "<br>")}
               </div>
             </div>
             
@@ -71,36 +68,32 @@ export async function POST(request) {
         
         Message:
         ${message}
-      `
-    })
+      `,
+    });
 
     if (error) {
-      console.error('Erreur Resend:', error)
+      console.error("Erreur Resend:", error);
       return NextResponse.json(
-        { error: 'Erreur lors de l\'envoi de l\'email' }, 
+        { error: "Erreur lors de l'envoi de l'email" },
         { status: 500 }
-      )
+      );
     }
 
-    console.log('Email envoyé avec succès:', data)
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Message envoyé avec succès' 
-    })
-
+    console.log("Email envoyé avec succès:", data);
+    return NextResponse.json({
+      success: true,
+      message: "Message envoyé avec succès",
+    });
   } catch (error) {
-    console.error('Erreur serveur:', error)
+    console.error("Erreur serveur:", error);
     return NextResponse.json(
-      { error: 'Erreur interne du serveur' }, 
+      { error: "Erreur interne du serveur" },
       { status: 500 }
-    )
+    );
   }
 }
 
 // Gestion des méthodes non autorisées
 export async function GET() {
-  return NextResponse.json(
-    { error: 'Méthode non autorisée' }, 
-    { status: 405 }
-  )
+  return NextResponse.json({ error: "Méthode non autorisée" }, { status: 405 });
 }

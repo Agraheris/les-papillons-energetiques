@@ -49,12 +49,11 @@ function Footer() {
             </Link>
           </div>
 
-          {/* Mentions légales */}
           <div className="text-center lg:text-left lg:order-1 text-xs">
             <p>© 2025 Le Papillon Énergétique</p>
             <p>Tous droits réservés</p>
             <p className="mt-2">Site conçu par</p>
-            <p>Clément</p>
+            <p>Clem-it</p>
           </div>
           
         </div>

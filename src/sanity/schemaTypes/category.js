@@ -1,6 +1,6 @@
 export const prestationCategory = {
   name: 'prestationCategory',
-  title: 'Catégorie de Prestation',
+  title: 'Catégorie de Prestations',
   type: 'document',
   fields: [
     {
