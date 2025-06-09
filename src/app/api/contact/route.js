@@ -23,7 +23,7 @@ export async function POST(request) {
 
     // Envoi de l'email
     const { data, error } = await resend.emails.send({
-      from: "contact@lepapillonenergetique.fr",
+      from: "onboarding@resend.dev", // ✅ Domaine vérifié par défaut
       to: [process.env.CONTACT_EMAIL],
       subject: `Nouveau message de ${name} ${surname}`,
       html: `
