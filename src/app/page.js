@@ -20,11 +20,11 @@ export default function Home() {
           </div>
           <div className="lg:w-2/3 text-gray-700 leading-relaxed space-y-4">
             <p className="text-lg">
-              Vous êtes souvent sujet(tte) à l&apos;anxiété, le stress ou une
-              baisse de morale et vous sentez que cela affecte votre bien-être
+              Vous êtes souvent sujet(te) à l&apos;anxiété, le stress ou une
+              baisse de moral et vous sentez que cela affecte votre bien-être
               au quotidien? Je vous propose des soins énergétiques
               personnalisés, conçus pour agir sur vos corps physique,
-              emmotionnel et énergégétique.
+              emotionnel et énergétique.
             </p>
             <p className="text-lg font-medium text-purple-700">
               L&apos;objectif? Vous libérer de ces blocages pour retrouver un
@@ -33,8 +33,8 @@ export default function Home() {
             <p className="mb-4">
               <strong>Vous souffrez de douleurs physiques?</strong> Que ce soit
               une inflammation( comme une tendinite), des douleurs chroniques ou
-              encore des brulures(accidents domestiques, traitements médicaux,
-              etc...) j&apos;utilise le magnétisme pour
+              encore des brûlures(accidents domestiques, traitements médicaux,
+              etc.) j&apos;utilise le magnétisme pour
             </p>
 
             <ul className="space-y-2 text-purple-700 pl-4">
@@ -86,22 +86,22 @@ export default function Home() {
               me plonger dans des études scientifiques.
             </p>
             <p>
-              Un parcours inattendu qui m&apos;a emmené à travailler en hepad et
-              à domicile auprés des personnes âgées ou en situation de handicap,
+              Un parcours inattendu qui m&apos;a emmené à travailler en EHPAD et
+              à domicile auprès des personnes âgées ou en situation de handicap,
               motivée par l&apos;envie d&apos;aider.
             </p>
             <p>
               Mais un jour, la vie m&apos;a rappelé sur mon chemin: un problème
-              de santé et une expérience de mort imminente, m&apos;ont obligé à
+              de santé et une expérience de mort imminente, m&apos;ont obligée à
               tout remettre en question. A ma grande surprise, ma récupération
               dépassait toutes les attentes médicales. C&apos;est alors que
               j&apos;ai compris qu&apos;il était temps de me reconnecter à mes
               dons naturels.
             </p>
             <p>
-              Aujourd&apos;hui, aprés des formations et des années d&apos;études
+              Aujourd&apos;hui, après des formations et des années d&apos;études
               autodidactes je mets mes capacités à votre service: -Magnétisme et
-              manipulation de l&apos;énergie -Clair ressenti, clairvoyance et
+              manipulation de l&apos;énergie -Clair-ressenti, clairvoyance et
               précognition.
             </p>
             <p>

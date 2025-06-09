@@ -1,7 +1,7 @@
 // src/sanity/schemaTypes/prestation.js
 export const prestation = {
-  name: 'prestations',
-  title: 'Prestations',
+  name: 'prestation',
+  title: 'Prestation',
   type: 'document',
   fields: [
     {
