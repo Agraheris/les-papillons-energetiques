@@ -21,10 +21,10 @@ export default function Home() {
           <div className="lg:w-2/3 text-gray-700 leading-relaxed space-y-4">
             <p className="text-lg">
               Vous êtes souvent sujet(te) à l&apos;anxiété, le stress ou une
-              baisse de moral et vous sentez que cela affecte votre bien-être
+              baisse de morale et vous sentez que cela affecte votre bien-être
               au quotidien? Je vous propose des soins énergétiques
               personnalisés, conçus pour agir sur vos corps physique,
-              emotionnel et énergétique.
+              émotionnel et énergétique.
             </p>
             <p className="text-lg font-medium text-purple-700">
               L&apos;objectif? Vous libérer de ces blocages pour retrouver un
@@ -32,7 +32,7 @@ export default function Home() {
             </p>
             <p className="mb-4">
               <strong>Vous souffrez de douleurs physiques?</strong> Que ce soit
-              une inflammation( comme une tendinite), des douleurs chroniques ou
+              une inflammation( comme une tendinite ), des douleurs chroniques ou
               encore des brûlures(accidents domestiques, traitements médicaux,
               etc.) j&apos;utilise le magnétisme pour
             </p>
@@ -56,7 +56,7 @@ export default function Home() {
           </div>
         </div>
         <p className="text-sm text-gray-600 italic mt-16">
-          NB: mes soins ne remplacent pas une consultation médicale ou un suivi
+          NB : mes soins ne remplacent pas une consultation médicale ou un suivi
           médical adapté
         </p>
       </section>
@@ -93,14 +93,14 @@ export default function Home() {
             <p>
               Mais un jour, la vie m&apos;a rappelé sur mon chemin: un problème
               de santé et une expérience de mort imminente, m&apos;ont obligée à
-              tout remettre en question. A ma grande surprise, ma récupération
+              tout remettre en question. À ma grande surprise, ma récupération
               dépassait toutes les attentes médicales. C&apos;est alors que
               j&apos;ai compris qu&apos;il était temps de me reconnecter à mes
               dons naturels.
             </p>
             <p>
               Aujourd&apos;hui, après des formations et des années d&apos;études
-              autodidactes je mets mes capacités à votre service: -Magnétisme et
+              autodidactes, je mets mes capacités à votre service: -Magnétisme et
               manipulation de l&apos;énergie -Clair-ressenti, clairvoyance et
               précognition.
             </p>
