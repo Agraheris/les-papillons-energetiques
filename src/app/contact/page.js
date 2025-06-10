@@ -1,183 +1,164 @@
-"use client"
+'use client'
+
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
-    name: '',
-    surname: '',
-    email: '',
+    from_name: '',
+    prenom: '',
+    from_email: '',
     message: ''
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [status, setStatus] = useState('')
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
-    // Reset des messages d'erreur quand l'utilisateur tape
-    if (submitStatus === 'error') {
-      setSubmitStatus('')
-      setErrorMessage('')
-    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('')
-    setErrorMessage('')
-    
+    setIsLoading(true)
+    setStatus('')
+
+    console.log('🔍 Variables env:', {
+      serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+      templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+    })
+
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      // Envoi de l'email
+      const result = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.from_name,
+          prenom: formData.prenom,
+          from_email: formData.from_email,
+          message: formData.message
         },
-        body: JSON.stringify(formData)
-      })
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      )
 
-      const data = await response.json()
-
-      if (response.ok) {
-        setSubmitStatus('success')
-        setFormData({ name: '', surname: '', email: '', message: '' })
-      } else {
-        setSubmitStatus('error')
-        setErrorMessage(data.error || 'Une erreur est survenue')
-      }
+      console.log('✅ Email envoyé:', result)
+      setStatus('success')
+      setFormData({ from_name: '', prenom: '', from_email: '', message: '' })
+      
     } catch (error) {
-      console.error('Erreur:', error)
-      setSubmitStatus('error')
-      setErrorMessage('Erreur de connexion. Veuillez réessayer.')
+      console.error('❌ Erreur complète:', error)
+      console.error('❌ Message d\'erreur:', error.message)
+      console.error('❌ Stack:', error.stack)
+      setStatus('error')
     } finally {
-      setIsSubmitting(false)
+      setIsLoading(false)
     }
   }
 
-  const isFormValid = formData.name && formData.surname && formData.email && formData.message
-
   return (
-    <div className="bg-gradient-to-br from-purple-200 via-pink-200 to-purple-300 p-4 relative">
-      <div className="max-w-2xl mx-auto py-12">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-serif text-purple-800 mb-4">Contact</h2>
-          <p className="text-purple-700">
-            Contactez-moi pour prendre rendez-vous ou pour toute question
-          </p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 to-pink-100 p-8">
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-3xl font-bold text-center text-purple-800 mb-4">
+          Contact
+        </h1>
+        <p className="text-center text-purple-600 mb-8">
+          Contactez-moi pour prendre rendez-vous ou pour toute question
+        </p>
 
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl max-w-2xl mx-auto">
-          {submitStatus === 'success' && (
-            <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-              <div className="flex items-center">
-                <span className="text-green-500 mr-2">✅</span>
-                <div>
-                  <strong>Message envoyé avec succès !</strong>
-                  <p className="text-sm mt-1">Je vous répondrai dans les plus brefs délais.</p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {submitStatus === 'error' && (
-            <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-              <div className="flex items-center">
-                <span className="text-red-500 mr-2">❌</span>
-                <div>
-                  <strong>Erreur d&apos;envoi</strong>
-                  <p className="text-sm mt-1">{errorMessage}</p>
-                </div>
-              </div>
-            </div>
-          )}
-
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
           <form onSubmit={handleSubmit} className="space-y-6">
-         
+            
+            {/* Nom */}
             <div>
-              <label className="block text-sm font-medium text-purple-800 mb-2">
-                Nom *
+              <label className="block text-purple-700 font-medium mb-2">
+                Nom <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                name="from_name"
+                value={formData.from_name}
                 onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-purple-100 border border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
                 placeholder="Votre nom"
+                required
+                className="w-full px-4 py-3 bg-purple-50 border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
               />
             </div>
 
+            {/* Prénom */}
             <div>
-              <label className="block text-sm font-medium text-purple-800 mb-2">
-                Prénom *
+              <label className="block text-purple-700 font-medium mb-2">
+                Prénom <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                name="surname"
-                value={formData.surname}
+                name="prenom"
+                value={formData.prenom}
                 onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-purple-100 border border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
                 placeholder="Votre prénom"
+                required
+                className="w-full px-4 py-3 bg-purple-50 border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
               />
             </div>
 
+            {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-purple-800 mb-2">
-                Email *
+              <label className="block text-purple-700 font-medium mb-2">
+                Email <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
-                name="email"
-                value={formData.email}
+                name="from_email"
+                value={formData.from_email}
                 onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-purple-100 border border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all"
                 placeholder="votre.email@exemple.com"
+                required
+                className="w-full px-4 py-3 bg-purple-50 border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
               />
             </div>
 
+            {/* Message */}
             <div>
-              <label className="block text-sm font-medium text-purple-800 mb-2">
-                Message *
+              <label className="block text-purple-700 font-medium mb-2">
+                Message <span className="text-red-500">*</span>
               </label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                required
                 rows={6}
-                className="w-full px-4 py-3 bg-purple-100 border border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all resize-none"
                 placeholder="Décrivez votre demande, vos besoins ou posez votre question..."
+                required
+                className="w-full px-4 py-3 bg-purple-50 border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent resize-none"
               />
             </div>
 
+            {/* Bouton Submit */}
             <button
               type="submit"
-              disabled={isSubmitting || !isFormValid}
-              className="w-full py-4 bg-purple-800 text-white font-medium rounded-lg hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isLoading}
+              className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-xl hover:from-purple-600 hover:to-pink-600 transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? (
-                <div className="flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                  Envoi en cours...
-                </div>
-              ) : (
-                'Envoyer le message'
-              )}
+              {isLoading ? 'Envoi en cours...' : 'Envoyer le message'}
             </button>
-          </form>
-        </div>
 
-        <div className="absolute top-32 left-20 opacity-30 text-black text-7xl pointer-events-none transform -rotate-12">
-          🦋
-        </div>
-        <div className="absolute bottom-40 right-32 opacity-25 text-black text-9xl pointer-events-none transform rotate-45">
-          🦋
+            {/* Messages de statut */}
+            {status === 'success' && (
+              <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-xl">
+                ✅ Message envoyé avec succès ! Je vous répondrai rapidement.
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-xl">
+                ❌ Erreur lors de l&apos;envoi. Veuillez réessayer.
+              </div>
+            )}
+
+          </form>
         </div>
       </div>
     </div>
