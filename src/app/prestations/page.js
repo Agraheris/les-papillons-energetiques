@@ -3,6 +3,12 @@ import Link from 'next/link';
 import { client } from '@/sanity/lib/client';
 
 export default async function PrestationsPage() {
+    console.log("🔍 Test connexion Sanity depuis la page liste...");
+      // Test simple
+  const test = await client.fetch(`*[_type == "prestation"]`);
+  console.log("📊 Toutes les prestations:", test);
+  console.log("📊 Nombre total:", test.length);
+
   const prestations = await client.fetch(`
     *[_type == "prestation" && isActive == true]{
       _id,
