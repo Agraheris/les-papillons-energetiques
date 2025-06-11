@@ -13,10 +13,10 @@ function Navbar() {
 
   return (
     <>
-      <nav className="flex items-center justify-between p-4 relative bg-[#E9BAF1]">
+      <nav className="flex items-center p-4 relative bg-[#E9BAF1]">
         <Link
           href="/"
-          className="flex items-center hover:opacity-80 transition-opacity cursor-pointer"
+          className="flex items-center hover:opacity-80 transition-opacity cursor-pointer flex-shrink-0"
         >
           <div className="flex items-center">
             <Image
@@ -24,24 +24,23 @@ function Navbar() {
               alt="Logo du site"
               width={200}
               height={150}
-              className="mr-4"
+              className="w-20 lg:w-[200px] lg:mr-4"
             />
           </div>
         </Link>
-        <div className="relative flex flex-col items-center justify-center text-center">
-  <Image
-    src="/images/papillon_fond.png"
-    alt="Papillon décoratif"
-    width={200}
-    height={150}
-    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15 pointer-events-none z-0"
-  />
-  <h1 className="text-xl font-semibold leading-tight z-10 relative">
-    Le papillon énergétique<br />
-    <span className="text-sm font-normal">Prenez votre envol vers un mieux-être</span>
-  </h1>
-</div>
-
+        <div className="flex-1 relative flex flex-col items-center justify-center text-center mx-4">
+          <Image
+            src="/images/papillon_fond.png"
+            alt="Papillon décoratif"
+            width={200}
+            height={150}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15 pointer-events-none z-0"
+          />
+          <h1 className="text-xl font-semibold leading-tight z-10 relative">
+            Le papillon énergétique<br />
+            <span className="text-sm font-normal">Prenez votre envol vers un mieux-être</span>
+          </h1>
+        </div>
 
         <div className="hidden lg:flex space-x-4">
           <Link
@@ -66,7 +65,7 @@ function Navbar() {
 
         <button
           onClick={toggleMenu}
-          className="lg:hidden flex flex-col space-y-1 p-2"
+          className="lg:hidden flex flex-col space-y-1 p-2 flex-shrink-0"
           aria-label="Menu"
         >
           <div
@@ -120,18 +119,18 @@ function Navbar() {
 
             <div className="flex flex-col space-y-4">
               <Link
-                href="/avis"
-                className="bg-purple-400 hover:bg-purple-500 text-white px-6 py-3 rounded-lg text-center transition-colors"
-                onClick={toggleMenu}
-              >
-                Avis
-              </Link>
-              <Link
                 href="/prestations"
                 className="bg-purple-400 hover:bg-purple-500 text-white px-6 py-3 rounded-lg text-center transition-colors"
                 onClick={toggleMenu}
               >
                 Prestation / Tarif
+              </Link>
+              <Link
+                href="/avis"
+                className="bg-purple-400 hover:bg-purple-500 text-white px-6 py-3 rounded-lg text-center transition-colors"
+                onClick={toggleMenu}
+              >
+                Avis
               </Link>
               <Link
                 href="/contact"

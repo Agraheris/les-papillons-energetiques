@@ -37,22 +37,22 @@ export default function Home() {
               etc.) j&apos;utilise le magnétisme pour
             </p>
 
-            <ul className="space-y-2 text-purple-700 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="mt-1 w-2 h-2 bg-purple-500 rounded-full shrink-0"></span>
-                <span>Apaiser les douleurs</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1 w-2 h-2 bg-purple-500 rounded-full shrink-0"></span>
-                <span>Réduire l&apos;inflammation</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1 w-2 h-2 bg-purple-500 rounded-full shrink-0"></span>
-                <span>
-                  Couper le feu pour soulager les brûlures et les tensions
-                </span>
-              </li>
-            </ul>
+<ul className="space-y-2 text-purple-700 lg:pl-4">
+  <li className="flex items-start gap-2 text-left">
+    <span className="mt-1 w-2 h-2 bg-purple-500 rounded-full shrink-0"></span>
+    <span>Apaiser les douleurs</span>
+  </li>
+  <li className="flex items-start gap-2 text-left">
+    <span className="mt-1 w-2 h-2 bg-purple-500 rounded-full shrink-0"></span>
+    <span>Réduire l&apos;inflammation</span>
+  </li>
+  <li className="flex items-start gap-2 text-left">
+    <span className="mt-1 w-2 h-2 bg-purple-500 rounded-full shrink-0"></span>
+    <span>
+      Couper le feu pour soulager les brûlures et les tensions
+    </span>
+  </li>
+</ul>
           </div>
         </div>
         <p className="text-sm text-gray-600 italic mt-16">
