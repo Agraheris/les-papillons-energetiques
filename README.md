@@ -166,9 +166,6 @@ les-papillons-energetiques/
 - Portfolio de réalisations
 - Interface responsive mobile/desktop
 
-## 🔄 Statut et Évolutions
-
-**Version actuelle :** 1.0 (En développement)  
 
 ## 🌱 Apprentissages & Défis
 
