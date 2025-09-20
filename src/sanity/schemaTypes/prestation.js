@@ -1,4 +1,3 @@
-// src/sanity/schemaTypes/prestation.js
 export const prestation = {
   name: 'prestation',
   title: 'Prestation',
